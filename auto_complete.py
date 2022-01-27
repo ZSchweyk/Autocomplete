@@ -1,17 +1,26 @@
-from pynput.keyboard import Key, Controller
+from pynput.keyboard import Key, Controller, HotKey
 from pynput import keyboard
 import time
-
-time.sleep(3)
+# import keyboard
 
 key_board = Controller()
 
-with key_board.pressed(Key.shift):
-    key_board.press("0")
-    key_board.release("0")
+def press(button):
+    key_board.press(button)
+    key_board.release(button)
 
-    key_board.press(Key.left)
-    key_board.release(Key.left)
 
+def parenthesis_autocomplete():
+    print("pressed")
+    with key_board.pressed(Key.shift):
+        press("9")
+        press("0")
+    press(Key.left)
+
+
+with keyboard.GlobalHotKeys({'<shift>+9': parenthesis_autocomplete}) as h:
+    h.join()
+
+# keyboard.add_hotkey("shift + 9", parenthesis_autocomplete)
 
 
