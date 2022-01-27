@@ -3,21 +3,29 @@ from pynput import keyboard
 import time
 # import keyboard
 
+c = Controller()
+
+def press(button, num):
+    for i in range(num):
+        c.press(button)
+        c.release(button)
 
 def on_press(key):
-    print(key.code)
-    if key == KeyCode("l"):
-        print("Close parans")
-    # try:
-    #     print('alphanumeric key {0} pressed'.format(
-    #         key.char))
-    # except AttributeError:
-    #     print('special key {0} pressed'.format(
-    #         key))
+    try:
+        key_code = key.vk
+    except AttributeError:
+        key_code = key.value.vk
+
+    if key_code == 40:
+        # press(Key.backspace, 1)
+
+        with c.pressed(Key.shift):
+            # press("9", 1)
+            press("0", 1)
+        c.release(Key.shift)
+        press(Key.left, 1)
 
 
-
-# Collect events until released
 with keyboard.Listener(
         on_press=on_press,
         ) as listener:
