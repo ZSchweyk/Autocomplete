@@ -3,22 +3,27 @@ from pynput import keyboard
 import time
 # import keyboard
 
-key_board = Controller()
+c = Controller()
 
 def press(button):
-    key_board.press(button)
-    key_board.release(button)
+    c.press(button)
+    c.release(button)
 
 
 def parenthesis_autocomplete():
-    print("pressed")
-    with key_board.pressed(Key.shift):
+    with c.pressed(Key.shift):
         press("9")
         press("0")
+
+    # c.press(Key.shift)
+    # press("9")
+    # press("0")
+    # c.release(Key.shift)
     press(Key.left)
 
 
-with keyboard.GlobalHotKeys({'<shift>+9': parenthesis_autocomplete}) as h:
+
+with keyboard.GlobalHotKeys({'shift+9': parenthesis_autocomplete}) as h:
     h.join()
 
 # keyboard.add_hotkey("shift + 9", parenthesis_autocomplete)
