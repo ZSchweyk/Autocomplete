@@ -22,10 +22,10 @@ with keyboard.GlobalHotKeys(
             "<shift>+9": lambda: shift_autocomplete(True, "0"),
 
             "<shift>+[": lambda: shift_autocomplete(True, "]"),
-            "[": lambda: shift_autocomplete(False, "]"),
+            # "[": lambda: shift_autocomplete(False, "]"),
 
             "<shift>+'": lambda: shift_autocomplete(True, "'"),
-            "'": lambda: shift_autocomplete(False, "'"),
+            # "'": lambda: shift_autocomplete(False, "'"),
 
 
         }
